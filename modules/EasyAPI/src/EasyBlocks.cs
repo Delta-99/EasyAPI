@@ -487,11 +487,7 @@ public class EasyBlocks
 
     public EasyBlocks WritePrivateText(string text)
     {
-        for(int i = 0; i < this.Blocks.Count; i++)
-        {
-            this.Blocks[i].WritePublicText(text);
-        }
-
+      // Obsolete
         return this;
     }
 
@@ -527,11 +523,7 @@ public class EasyBlocks
 
     public EasyBlocks AppendPrivateText(string text)
     {
-        for(int i = 0; i < this.Blocks.Count; i++)
-        {
-            this.Blocks[i].AppendPrivateText(text);
-        }
-
+		// Obsolete
         return this;
     }    
     

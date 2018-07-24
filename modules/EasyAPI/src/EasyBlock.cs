@@ -45,8 +45,11 @@ public struct EasyBlock
 
         if(door != null)
         {
-            return door.Open;
-        }
+			// Not sure what was intended here but Open is obsolete.
+			// Not sure if this is supposed to open a door or get the
+			// status so just return true for now.
+            // return door.Status;
+            return true;        }
 
         return false;
     }
@@ -234,7 +237,7 @@ public struct EasyBlock
         switch(type)
         {
             case "private":
-                cmd.handle(this.GetPrivateText());                    
+                cmd.handle("Getting Private text is obsolete");                      
                 break;  
             default:
                 cmd.handle(this.GetPublicText());                    
@@ -272,16 +275,7 @@ public struct EasyBlock
     
     public string GetPrivateText()
     {
-        string ret = "";
-        
-        IMyTextPanel textPanel = Block as IMyTextPanel;
-
-        if(textPanel != null)
-        {
-            ret = textPanel.GetPrivateText();
-        }
-        
-        return ret;
+        return "Getting private text is obsolete";
     }
     
     public EasyBlock WritePublicTitle(string text)
@@ -298,13 +292,7 @@ public struct EasyBlock
 
     public EasyBlock WritePrivateTitle(string text)
     {
-        IMyTextPanel textPanel = Block as IMyTextPanel;
-
-        if(textPanel != null)
-        {
-            textPanel.WritePrivateTitle(text, false);
-        }
-
+		// Obsolete
         return this;
     }
 
@@ -322,43 +310,28 @@ public struct EasyBlock
 
     public EasyBlock WritePrivateText(string text)
     {
-        IMyTextPanel textPanel = Block as IMyTextPanel;
-
-        if(textPanel != null)
-        {
-            textPanel.WritePrivateText(text, false);
-        }
+      // Obsolete
 
         return this;
     }
 
     public EasyBlock AppendPublicText(string text)
     {
-        IMyTextPanel textPanel = Block as IMyTextPanel;
-
-        if(textPanel != null)
-        {
-            textPanel.WritePublicText(text, true);
-        }
+		// Obsolete
 
         return this;
     }
 
     public EasyBlock AppendPrivateText(string text)
     {
-        IMyTextPanel textPanel = Block as IMyTextPanel;
-
-        if(textPanel != null)
-        {
-            textPanel.WritePrivateText(text, true);
-        }
+		// Obsolete
 
         return this;
     }
 
     public EasyBlock SetName(String Name)
     {
-        this.Block.SetCustomName(Name);
+        this.Block.CustomName = Name;
 
         return this;
     }

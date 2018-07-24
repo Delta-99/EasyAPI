@@ -790,11 +790,7 @@ public class EasyBlocks
 
     public EasyBlocks WritePrivateText(string text)
     {
-        for(int i = 0; i < this.Blocks.Count; i++)
-        {
-            this.Blocks[i].WritePublicText(text);
-        }
-
+      // Obsolete
         return this;
     }
 
@@ -830,11 +826,7 @@ public class EasyBlocks
 
     public EasyBlocks AppendPrivateText(string text)
     {
-        for(int i = 0; i < this.Blocks.Count; i++)
-        {
-            this.Blocks[i].AppendPrivateText(text);
-        }
-
+		// Obsolete
         return this;
     }    
     
@@ -991,8 +983,11 @@ public struct EasyBlock
 
         if(door != null)
         {
-            return door.Open;
-        }
+			// Not sure what was intended here but Open is obsolete.
+			// Not sure if this is supposed to open a door or get the
+			// status so just return true for now.
+            // return door.Status;
+            return true;        }
 
         return false;
     }
@@ -1180,7 +1175,7 @@ public struct EasyBlock
         switch(type)
         {
             case "private":
-                cmd.handle(this.GetPrivateText());                    
+                cmd.handle("Getting Private text is obsolete");                      
                 break;  
             default:
                 cmd.handle(this.GetPublicText());                    
@@ -1218,16 +1213,7 @@ public struct EasyBlock
     
     public string GetPrivateText()
     {
-        string ret = "";
-        
-        IMyTextPanel textPanel = Block as IMyTextPanel;
-
-        if(textPanel != null)
-        {
-            ret = textPanel.GetPrivateText();
-        }
-        
-        return ret;
+        return "Getting private text is obsolete";
     }
     
     public EasyBlock WritePublicTitle(string text)
@@ -1244,13 +1230,7 @@ public struct EasyBlock
 
     public EasyBlock WritePrivateTitle(string text)
     {
-        IMyTextPanel textPanel = Block as IMyTextPanel;
-
-        if(textPanel != null)
-        {
-            textPanel.WritePrivateTitle(text, false);
-        }
-
+		// Obsolete
         return this;
     }
 
@@ -1268,43 +1248,28 @@ public struct EasyBlock
 
     public EasyBlock WritePrivateText(string text)
     {
-        IMyTextPanel textPanel = Block as IMyTextPanel;
-
-        if(textPanel != null)
-        {
-            textPanel.WritePrivateText(text, false);
-        }
+      // Obsolete
 
         return this;
     }
 
     public EasyBlock AppendPublicText(string text)
     {
-        IMyTextPanel textPanel = Block as IMyTextPanel;
-
-        if(textPanel != null)
-        {
-            textPanel.WritePublicText(text, true);
-        }
+		// Obsolete
 
         return this;
     }
 
     public EasyBlock AppendPrivateText(string text)
     {
-        IMyTextPanel textPanel = Block as IMyTextPanel;
-
-        if(textPanel != null)
-        {
-            textPanel.WritePrivateText(text, true);
-        }
+		// Obsolete
 
         return this;
     }
 
     public EasyBlock SetName(String Name)
     {
-        this.Block.SetCustomName(Name);
+        this.Block.CustomName = Name;
 
         return this;
     }
@@ -1376,7 +1341,7 @@ public class EasyInventory
         {
             EasyBlock Block = Blocks[i];
 
-            for(int j = 0; j < Block.Block.GetInventoryCount(); j++)
+            for(int j = 0; j < Block.Block.InventoryCount; j++)
             {
                 IMyInventory Inventory = Block.Block.GetInventory(j);
 
@@ -1477,7 +1442,7 @@ public struct EasyItem
 
     public String Type(int dummy = 0)
     {
-        return this.Item.Content.SubtypeName;
+        return this.Item.Content.TypeId.ToString();
     }
 
     public VRage.MyFixedPoint Amount()
